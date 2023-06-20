@@ -1,9 +1,7 @@
+from sys import stdin
 import math
-pseudo = list(map(int, input().split()))
-
-N = pseudo[0]
-M = pseudo[1]
-arr = [[int(i) for i in str(pseudo[j])] for j in range(2,N+2)]
+N, M = map(int, stdin.readline().split())
+arr = [stdin.readline().rstrip() for _ in range(N)]
 
 def sqtest(n):
   return math.isqrt(n) ** 2 == n
@@ -12,7 +10,9 @@ def filter(a,i,j,d1,d2):
   result = 0
   while i in range(0,N) and j in range(0,M) :
     result *= 10
-    result += a[i][j]
+    result += int(a[i][j])
+    if d1 == 0 and d2 == 0 :
+    	break
     i += d1
     j += d2
   result = int(result)
