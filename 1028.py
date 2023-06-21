@@ -1,5 +1,6 @@
 from sys import stdin
 
+<<<<<<< HEAD
 r, c = map(int, stdin.readline().split())
 arr = [stdin.readline().rstrip() for _ in range(r)]
 
@@ -40,3 +41,7 @@ for n in range(375):
 print(result)
 '''
 print(arr)
+=======
+N, M = map(int, stdin.readline().split())
+arr = [stdin.readline().rstrip() for _ in range(N)]
+>>>>>>> acfe04e3e1de2e0765a8e672c078b8f7830858a5
