@@ -13,29 +13,25 @@ def func(n):
 				if res[i]+1 < res[i+1]:
 					res[i] = res[i]+1
 					for j in range(0,i):
-						res[j] = 0
+						res[j] = j
 					ind = False
 					break
 				
 			if ind and res[len(res)-1]+1 < 10:
 				res[len(res)-1] += 1
 				for i in range(0,len(res)-1):
-					res[i] = 0
+					res[i] = i
 				ind = False
 			
 			if ind and res[len(res)-1]+1 >= 10 :
-				res.append(1)
+				res.append(len(res))
 				for i in range(0,len(res)-1):
-					res[i] = 0
-		
+					res[i] = i
 			n -= 1
 			
-			if res == [0,1,2,3,4,5,6,7,8,9]:
-				res = [-1]
-				
-				break
-			
-			
+			if res == [0,1,2,3,4,5,6,7,8,9,10]:
+				return -1
+					
 		result = int(''.join(map(str, list(reversed(res)))))
 	
 	
