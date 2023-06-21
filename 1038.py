@@ -1,10 +1,7 @@
-n = int(input())
-if n > 1022 :
-	result = -1
-	
-else : 
+def func(n):
 	if n in range(0,10) :
-		res = [n]
+		result = n
+
 		
 	else :
 		n = n - 10
@@ -24,6 +21,7 @@ else :
 				res[len(res)-1] += 1
 				for i in range(0,len(res)-1):
 					res[i] = 0
+				ind = False
 			
 			if ind and res[len(res)-1]+1 >= 10 :
 				res.append(1)
@@ -31,14 +29,19 @@ else :
 					res[i] = 0
 		
 			n -= 1
-		
-	result = int(''.join(map(str, list(reversed(res)))))
-		
-print(result)
 			
-
+			if res == [0,1,2,3,4,5,6,7,8,9]:
+				res = [-1]
+				
+				break
+			
+			
+		result = int(''.join(map(str, list(reversed(res)))))
 	
-
-
 	
-		
+	return result
+
+
+n = int(input())
+output = func(n)
+print(output)
