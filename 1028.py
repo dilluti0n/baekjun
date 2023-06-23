@@ -1,18 +1,7 @@
 from sys import stdin
-import time
-'''
+
 r, c = map(int, stdin.readline().split())
 arr = [stdin.readline().rstrip() for _ in range(r)]
-'''
-
-r,c = 175, 175
-arr = []
-for i in range(r):
-    arr.append([])
-    for j in range(c):
-        arr[i].append('1')
-
-start = time.time()
 
 def dpr(arr,i,j):
 
@@ -52,25 +41,26 @@ for i in range(0,r):
 			temp[i][j] = [dpr(arr,i,j),dpl(arr,i,j)]
 			
 def check(i,j):
+	
+	if arr[i][j] == '0' :
+		return -1
+		
 	global temp
 	res = 0
 	
-	for k in range(1,min(temp[i][j][0],temp[i][j][1])+1):
+	for k in range(min(temp[i][j][0], temp[i][j][1]), 0, -1):
 		
 		if i+k >= r or j+k >= c or j-k < 0:
-			return res
+			break
 		
 		elif temp[i+k][j+k][1] >= k and temp[i+k][j-k][0] >= k :
 			res = k
+			break
 			
 	return res
 
-for i in range(0,r-2):
-	for j in range(1,c-1):
+for i in range(0,r):
+	for j in range(0,c):
 		result = max(check(i,j),result)
 
 print(result+1)
-
-end = time.time()
-
-print(f"{end - start:.5f} sec")
