@@ -1,6 +1,6 @@
 from sys import stdin
 import time
-
+'''
 r, c = map(int, stdin.readline().split())
 arr = [stdin.readline().rstrip() for _ in range(r)]
 '''
@@ -11,31 +11,45 @@ for i in range(r):
     arr.append([])
     for j in range(c):
         arr[i].append('1')
-'''
+
 start = time.time()
 
-def dp(arr,i,j,ind):
+def dpr(arr,i,j):
 
 	global r, c
 	cnt = 0
 	
 	while arr[i][j] != '0' :
 		cnt += 1
-		i += (-1) ** ind[0]
-		j += (-1) ** ind[1]
+		i += 1
+		j += 1
 		
-		if i >= r or j >= c or i < 0 or j < 0:
-			return cnt -1
+		if i >= r or j >= c or arr[i][j] == '0':
+			return cnt - 1
+		
+	return cnt
+	
+def dpl(arr,i,j):
+
+	global r, c
+	cnt = 0
+	
+	while arr[i][j] != '0' :
+		cnt += 1
+		i += 1
+		j -= 1
+		
+		if i >= r or j < 0 or arr[i][j] == '0':
+			return cnt - 1
 		
 	return cnt
 
 result = 0
-indl = [[2,2],[2,1],[1,1],[1,2]]
 temp = [[0 for col in range(c)] for row in range(r)]
 
 for i in range(0,r):
 	for j in range(0,c):
-			temp[i][j] = [dp(arr,i,j,ind) for ind in indl]
+			temp[i][j] = [dpr(arr,i,j),dpl(arr,i,j)]
 			
 def check(i,j):
 	global temp
@@ -43,18 +57,16 @@ def check(i,j):
 	
 	for k in range(1,min(temp[i][j][0],temp[i][j][1])+1):
 		
-		y = i + 2 * k
-		
-		if y >= r :
+		if i+k >= r or j+k >= c or j-k < 0:
 			return res
 		
-		elif temp[y][j][2] >= k and temp[y][j][3] >= k :
+		elif temp[i+k][j+k][1] >= k and temp[i+k][j-k][0] >= k :
 			res = k
 			
 	return res
 
-for i in range(0,r):
-	for j in range(0,c):
+for i in range(0,r-2):
+	for j in range(1,c-1):
 		result = max(check(i,j),result)
 
 print(result+1)
