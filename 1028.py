@@ -1,47 +1,66 @@
 from sys import stdin
 
-<<<<<<< HEAD
 r, c = map(int, stdin.readline().split())
 arr = [stdin.readline().rstrip() for _ in range(r)]
 
+def dpr(arr,i,j):
 
-def diamove(n):
-	res = []
-	for i in range(n-1):
-		res.append((1,1))
-		res.append((1,-1))
-		res.append((-1,-1))
-		res.append((-1,1))
+	global r, c
+	cnt = 0
+	
+	while arr[i][j] != '0' :
+		cnt += 1
+		i += 1
+		j += 1
+		
+		if i >= r or j >= c or arr[i][j] == '0':
+			return cnt - 1
+		
+	return cnt
+	
+def dpl(arr,i,j):
+
+	global r, c
+	cnt = 0
+	
+	while arr[i][j] != '0' :
+		cnt += 1
+		i += 1
+		j -= 1
+		
+		if i >= r or j < 0 or arr[i][j] == '0':
+			return cnt - 1
+		
+	return cnt
+
+result = 0
+temp = [[0 for col in range(c)] for row in range(r)]
+
+for i in range(0,r):
+	for j in range(0,c):
+			temp[i][j] = [dpr(arr,i,j),dpl(arr,i,j)]
+			
+def check(i,j):
+	
+	if arr[i][j] == '0' :
+		return -1
+		
+	global temp
+	res = 0
+	
+	for k in range(min(temp[i][j][0], temp[i][j][1]), 0, -1):
+		
+		if i+k >= r or j+k >= c or j-k < 0:
+			break
+		
+		elif temp[i+k][j+k][1] >= k and temp[i+k][j-k][0] >= k :
+			res = k
+			break
+			
 	return res
 
+for i in range(0,r):
+	for j in range(0,c):
+		result = max(check(i,j),result)
 
-def check(arr,n,f):
-
-	if arr[f[0]][f[1]] == '0':
-		return False
-		
-	for move in diamove(n):
-		f[0] += move[0]
-		f[1] += move[1]
-		if f[0] < 0 or f[1] < 0 :
-			return False
-		
-		elif arr[f[0]][f[1]] == '0':
-			return False
-	
-	return True
-'''	
-for n in range(375):
-	for i in range(r):
-		for j in range(c):
-			f = [i,j]
-			if check(arr,n,f):
-				result = n
-
-print(result)
-'''
-print(arr)
-=======
-N, M = map(int, stdin.readline().split())
-arr = [stdin.readline().rstrip() for _ in range(N)]
->>>>>>> acfe04e3e1de2e0765a8e672c078b8f7830858a5
+print(result+1)
