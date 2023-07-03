@@ -1,31 +1,38 @@
 from sys import stdin
+from collections import deque
 
 t = int(stdin.readline())
 
 for _ in range(t):
 	n, k = map(int, stdin.readline().split())
 	D = list(map(int, stdin.readline().split()))
-	gd = [[] for _ in range(n)]
+	gu = [[] for _ in range(n)]
+	indegree = [0] * n
 	
 	for _ in range(k):
 		u, v = map(int,stdin.readline().split())
-		gd[v-1].append(u) # v를 짓기위해 지어야하는 건물들
+		gu[u-1].append(v) # u를 지으면 지을수있는 건물들
+		indegree[v-1] += 1
 		
 	w = int(stdin.readline())
 	
-	memo = [-1 for _ in range(n)]
-	init = []
-	
+	result = [0] * n
+	q = deque()
 	for i in range(n):
-		if gd[i] == []:
-			memo[i] = D[i]-1
-			init.append(i)
+		if indegree[i] == 0:
+			q.append(i+1)
 			
-	def dp(n):
-		if memo[n-1] != -1:
-			return memo[n-1]+1
-				
-				
-		return memo[n-1] + 1
+	while q:
+		now = q.popleft()
 		
-	print(dp(w))
+		for node in gu[now-1]:
+			indegree[node-1] -= 1
+			if indegree[node-1] == 0:
+				q.append(node)
+				
+			result[node-1] = max(result[node-1],result[now-1] + D[now-1])
+			
+		if now == w:
+			break
+			
+	print(result[w-1]+D[w-1])
