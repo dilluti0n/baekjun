@@ -29,10 +29,9 @@ twitter_username: dlLuti0n
 github_username:  dilluti0n
 
 # Build settings
-theme: minima
+theme: just-the-docs
 plugins:
   - jekyll-feed
-markdown: GFM
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -53,3 +52,12 @@ markdown: GFM
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+# code render layout configs
+compress_html:
+  ignore:
+    envs: all
+kramdown:
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
