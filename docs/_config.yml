@@ -21,9 +21,10 @@
 title: dilluti0n/baekjun
 description: >- # this means to ignore newlines until "baseurl:"
   baekjun 백준
-baseurl: /baekjun/ # the subpath of your site, e.g. /blog
+baseurl: /baekjun # the subpath of your site, e.g. /blog
 url: https://dilluti0n.github.io # the base hostname & protocol for your site, e.g. http://example.com
-
+aux_links:
+  Template Repository: https://github.com/dilluti0n/baekjun
 # Build settings
 theme: just-the-docs
 
