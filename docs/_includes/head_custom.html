@@ -1,4 +1,6 @@
-{% if page.mathjax %}
+{% assign math = page.math | default: layout.math | default: site.math %}
 
-<script type="text/x-mathjax-config"> {{ site.mathjax.config }}; </script> <script type="text/javascript" async src="{{ site.mathjax.source }}"> </script>
-{% endif %}
+{% case math %}
+  {% when "mathjax" %}
+    {% include mathjax.html %}
+{% endcase %}

@@ -18,8 +18,8 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-logo: "./img/logo/logo.png"
-favicon_ico: "./img/fabicon.ico"
+logo: "./assets/img/logo/logo.png"
+favicon_ico: "./assets/img/fabicon.ico"
 
 #footer content
 #markup / liquid-based content.
@@ -66,8 +66,5 @@ kramdown:
 
 # For copy button on code
 enable_copy_code_button: true
-
-compress_html:
-  blanklines: true
 
 math: mathjax
