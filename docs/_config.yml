@@ -18,12 +18,12 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-#logo: "/assets/img/logo/logo.png"
-#favicon_ico: "/assets/img/fabicon.ico"
+logo: "/assets/img/logo/logo.png"
+favicon_ico: "/assets/img/fabicon.ico"
 
 #footer content
-markup / liquid-based content.
-footer_content: "Copyright &copy; 2023 dilluti0n. All rights reserved."
+#markup / liquid-based content.
+#footer_content: "Copyright &copy; 2023 dilluti0n. All rights reserved."
 
 title: BOJ docs
 description: >- # this means to ignore newlines until "baseurl:"
