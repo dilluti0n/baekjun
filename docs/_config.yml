@@ -18,8 +18,8 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-logo: "/assets/img/logo/logo.png"
-favicon_ico: "/assets/img/fabicon.ico"
+#logo: "/assets/img/logo/logo.png"
+#favicon_ico: "/assets/img/fabicon.ico"
 
 #footer content
 markup / liquid-based content.
