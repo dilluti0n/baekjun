@@ -67,7 +67,4 @@ kramdown:
 # For copy button on code
 enable_copy_code_button: true
 
-compress_html:
-  blanklines: true
-
 math: mathjax
