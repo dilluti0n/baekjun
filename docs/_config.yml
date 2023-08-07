@@ -67,3 +67,5 @@ kramdown:
 # For copy button on code
 enable_copy_code_button: true
 
+page.mathjax: true
+
