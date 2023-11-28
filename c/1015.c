@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void quicksort(short [], short [], int, int);
+void sort(short [], short [], int);
 void swap(short [], short [], int, int);
 void printarray(short [], int);
 
@@ -14,31 +14,22 @@ int main()
         scanf("%d", (int *) &A[i]);
         index[i] = i;
     }
-    quicksort(A, index, 0, N-1);
+    sort(A, index, N);
     for (i = 0; i < N; i++)
         P[index[i]] = i;
+    printarray(A, N);
+    putchar('\n');
     printarray(P, N);
     
     return 0;
 }
 
-void quicksort(short A[], short P[], int left, int right)
+void sort(short a[], short index[], int N)
 {
-    int i, last;
-    
-    if (left >= right)
-        return;
-    
-    swap(A, P, left, (left + right) / 2);
-    
-    last = left;
-    for (i = left + 1; i <= right; i++)
-        if (A[i] < A[left])
-            swap(A, P, ++last, i);
-    
-    swap(A, P, left, last);
-    quicksort(A, P, left, last - 1);
-    quicksort(A, P, last + 1, right);
+    for (int i = 0; i < N; i++)
+        for (int j = i + 1; j < N; j++)
+            if (a[i] > a[j])
+                swap(a, index, i, j);
 }
 
 void swap(short A[], short P[], int i, int j)
